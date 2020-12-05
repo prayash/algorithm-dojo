@@ -7,22 +7,6 @@
  */
 class Solution {
     /**
-     Check every combination of coordinates.
-     */
-//    func trap(_ height: [Int], bruteForce: Bool) -> Int {
-//        var result = 0
-//
-//        for i in 0..<height.count {
-//            var maxLeft = 0
-//            var maxRight = 0
-//
-//            for j in i..<height.count {
-//
-//            }
-//        }
-//    }
-
-    /**
      Two pointers solution: O(n) run-time with O(1) space.
      Maintain two pointers at the edges of the array, moving the left
      forward ONLY if its height is less than the one on the right, because

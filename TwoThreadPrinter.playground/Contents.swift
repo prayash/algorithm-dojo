@@ -1,7 +1,3 @@
-/**
- Write a program that uses two threads to print the numbers from 1 to n.
- */
-
 import UIKit
 
 /**
@@ -54,6 +50,9 @@ sem_wait(&s);
 // Critical Section
 sem_post(&s);
  */
+
+
+/// Write a program that uses two threads to print the numbers from 1 to n.
 func concurrentCounter(_ n: Int, _ numThreads: Int = 2) {
     var currentNumber = 0
     let semaphore = DispatchSemaphore(value: 1)
@@ -62,17 +61,16 @@ func concurrentCounter(_ n: Int, _ numThreads: Int = 2) {
 
     let counter: (inout Int) -> Void = { currentNumber in
         while true {
-            // Lock
             semaphore.wait()
+            
 
             if currentNumber > n {
-                // Unlock
                 semaphore.signal()
                 return
             }
 
             print(currentNumber)
-            currentNumber += 90
+            currentNumber += 1
 
             semaphore.signal()
         }
@@ -81,6 +79,10 @@ func concurrentCounter(_ n: Int, _ numThreads: Int = 2) {
     operationQueue.addOperation {
         counter(&currentNumber)
     }
+    
+    operationQueue.addOperation {
+        counter(&currentNumber)
+    }
 }
 
-concurrentCounter(270)
+concurrentCounter(25)

@@ -22,13 +22,20 @@ class Solution {
         var sum = 0
 
         for i in 0..<arr.count - 1 {
-            let currentValue = numerals[arr[i]]!
-            let nextValue = numerals[arr[i + 1]]!
+            guard let currentValue = numerals[arr[i]] else {
+                break
+            }
+            
+            guard let nextValue = numerals[arr[i + 1]] else {
+                break
+            }
 
             sum = sum + (currentValue < nextValue ? -currentValue : currentValue)
         }
 
-        sum += numerals[arr.last!]!
+        if let lastValue = numerals[arr.last!] {
+            sum += lastValue
+        }
 
         return sum
     }

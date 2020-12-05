@@ -1,22 +1,21 @@
-// Linked List Implementation
-
-class Node<T> {
-    var value: T
-    var next: Node<T>?
-
-    // To avoid ownership cycles, we declare the previous pointer to be weak.
-    // If you have node A that is followed by node B in the list, then A points to B,
-    // but B also points to A. In certain circumstances this retain cycle can cause nodes
-    // to be kept alive even after deletion. We don't want that. so we'll make
-    // one of the pointers weak to break the cycle.
-    weak var prev: Node<T>?
-
-    init(value: T) {
-        self.value = value
-    }
-}
-
+/// LinkedList
 class LinkedList<T> {
+    class Node<T> {
+        var value: T
+        var next: Node<T>?
+
+        // To avoid ownership cycles, we declare the previous pointer to be weak.
+        // If you have node A that is followed by node B in the list, then A points to B,
+        // but B also points to A. In certain circumstances this retain cycle can cause nodes
+        // to be kept alive even after deletion. We don't want that. so we'll make
+        // one of the pointers weak to break the cycle.
+        weak var prev: Node<T>?
+
+        init(value: T) {
+            self.value = value
+        }
+    }
+    
     private var head: Node<T>?
     private var tail: Node<T>?
 

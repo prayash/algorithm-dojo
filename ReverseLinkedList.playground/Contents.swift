@@ -36,7 +36,7 @@ extension ListNode: CustomStringConvertible {
 
 class Solution {
     /**
-     O(n) time where n is list length, and O(1) space because
+     `O(n)` time where `n` is list length, and `O(1)` space because
      we're just iterating through the whole thing, switching the
      relationships of the nodes as we go.
      */

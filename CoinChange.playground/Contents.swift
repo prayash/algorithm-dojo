@@ -1,18 +1,15 @@
-/**
- You are given coins of different denominations and a total amount of money amount. Write a
- function to compute the fewest number of coins that you need to make up that amount. If that
- amount of money cannot be made up by any combination of the coins, return -1.
-
- Input: coins = [1, 2, 5], amount = 11
- Output: 3
- Explanation: 11 = 5 + 5 + 1
- */
+/// You are given coins of different denominations and a total amount of money amount. Write a
+/// function to compute the fewest number of coins that you need to make up that amount. If that
+/// amount of money cannot be made up by any combination of the coins, return -1.
+///
+/// Input: coins = [1, 2, 5], amount = 11
+/// Output: 3
+/// Explanation: 11 = 5 + 5 + 1
 
 class Solution {
-    /**
-     Bottom-up using an auxiliary dp table.
-     - Complexity: O(A * n)  time where A is the amount and n is denominations available. O(A) space for dp table.
-     */
+    /// Bottom-up using an auxiliary dp table.
+    /// - Complexity: `O(A * n)` time where A is the amount and n is denominations available.
+    /// `O(A)` space for dp table.
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
         let maximum = amount + 1
         var dp: [Int] = [Int].init(repeating: maximum, count: amount + 1)

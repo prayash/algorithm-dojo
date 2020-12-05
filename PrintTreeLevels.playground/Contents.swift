@@ -38,25 +38,6 @@ func treeLevels(_ root: Node?, f: (Int) -> ()) {
     }
 }
 
-//func treeLevelsDFS(_ root: Node?, f: (Int) -> ()) {
-//    guard let root = root else {
-//        return
-//    }
-//
-//    var dfsStack: [Node] = [root]
-//    while let node = dfsStack.popLast() {
-//        f(node.val)
-//
-//        if let left = node.left {
-//            dfsStack.append(left)
-//        }
-//
-//        if let right = node.right {
-//            dfsStack.append(right)
-//        }
-//    }
-//}
-
 func treeLevelsDFS(_ root: Node?, f: (Int) -> ()) -> () {
     guard let node = root else {
         return

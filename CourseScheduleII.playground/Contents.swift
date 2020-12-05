@@ -31,6 +31,8 @@ class Solution {
         for req in prerequisites {
             adj[req[0], default: []].append(req[1])
         }
+        
+        print(adj)
 
         for i in 0..<numCourses {
             guard dfs(i, adj, &sorted, &visited) else { return [] }
@@ -39,7 +41,12 @@ class Solution {
         return sorted
     }
 
-    func dfs(_ course: Int, _ adj: [Int: [Int]], _ sorted: inout [Int], _ visited: inout [Int: Bool]) -> Bool {
+    func dfs(
+        _ course: Int,
+        _ adj: [Int: [Int]],
+        _ sorted: inout [Int],
+        _ visited: inout [Int: Bool]
+    ) -> Bool {
         if let hasVisited = visited[course] {
             return hasVisited
         }
@@ -58,5 +65,5 @@ class Solution {
     }
 }
 
-print(Solution().findOrder(2, [[0,1],[1,0]]))
+print(Solution().findOrder(2, [[0, 1], [1, 0]]))
 print(Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]))

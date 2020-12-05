@@ -85,7 +85,7 @@ class Solution {
             }
         }
 
-        // Detect cycle - if there is a mismatch in in-degrees, then there's a cycle
+        // Detect cycle - if there is a mismatch in in-degrees, then there's a cycle.
         if result.count == indegree.count {
             return result
         }

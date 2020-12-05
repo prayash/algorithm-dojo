@@ -40,7 +40,7 @@ class Solution {
             inDegrees[toVertex] += 1
         }
 
-        print(adj.description)
+//        print(adj.description)
 
         // We'll use this to keep track of all the nodes that we have pulled from
         // our queue whose in-degree is 0
@@ -53,8 +53,6 @@ class Solution {
                 queue.append(i)
             }
         }
-
-        print(inDegrees)
 
         // Kick off the BFS
         while !queue.isEmpty {
@@ -84,9 +82,56 @@ class Solution {
 
         return count == numCourses
     }
+    
+    func canFinishDFS(_ numCourses: Int, _ prerequisites: [[Int]]) -> Bool {
+        var adj: [Int: [Int]] = [:]
+        var visited = Set<Int>()
+        var invalid = Set<Int>()
+        
+        for p in prerequisites {
+            adj[p[0], default: []].append(p[1])
+        }
+        
+        for i in 0..<numCourses {
+            if invalid.contains(i) {
+                continue
+            }
+            
+            if !dfsHelper(adj, visited: &visited, invalid: &invalid, course: i) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func dfsHelper(_ graph: [Int: [Int]], visited: inout Set<Int>, invalid: inout Set<Int>, course: Int) -> Bool {
+        if invalid.contains(course) {
+            return false
+        }
+        
+        if visited.contains(course) {
+            return false
+        } else {
+            visited.insert(course)
+        }
+        
+        if let eligibleCourses = graph[course] {
+            for c in eligibleCourses {
+                if !dfsHelper(graph, visited: &visited, invalid: &invalid, course: c) {
+                    invalid.insert(c)
+                    return false
+                }
+            }
+        }
+        
+        visited.remove(course)
+        return true
+    }
 }
 
 print(Solution().canFinish(2, [[1, 0], [0, 1]]))
 print(Solution().canFinish(3, [[1, 0], [2, 0]]))
 print(Solution().canFinish(4, [[1, 0], [2, 1], [2, 3], [3, 2]]))
 print(Solution().canFinish(2, [[0, 1]]))
+print(Solution().canFinishDFS(4, [[1, 0], [2, 1], [2, 3], [3, 2]]))

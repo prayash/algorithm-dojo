@@ -1,20 +1,15 @@
 import Foundation
 
-/**
- Given a string, determine if it is a palindrome, considering only alphanumeric
- characters and ignoring cases.
-
- Note: For the purpose of this problem, we define empty string as valid palindrome.
- */
-
+/// Given a string, determine if it is a palindrome, considering only alphanumeric
+/// characters and ignoring cases.
+/// Note: For the purpose of this problem, we define empty string as valid palindrome.
 class Solution {
 
-    // MARK: - O(n) solution 😎
-
-    /**
-     O(n) time to scan through the whole thing with two pointers.
-     O(n) space to store an array without the alphanumeric characters.
-     */
+    /// Use two pointers to scan inwards from each end.
+    ///
+    /// Complexity:
+    /// `O(n)` time to scan through the whole thing with two pointers.
+    /// `O(n)` space to store an array without the alphanumeric characters.
     func isPalindrome(_ s: String) -> Bool {
         guard !s.isEmpty || s.count > 1 else {
             return true
@@ -39,8 +34,11 @@ class Solution {
         return true
     }
 
-    // MARK: - O(n) with recursion. Careful with potential stack overflows!
-
+    /// Recursively scan comparing two characters from each side, moving inward.
+    ///
+    /// Complexity:
+    /// `O(n)` time to scan through the whole thing with two pointers.
+    /// `O(n)` space to prune the input set.
     func isPalindromeRecursive(_ s: String) -> Bool {
         func helper(_ s: [Character], _ start: Int, _ end: Int) -> Bool {
             guard (!s.isEmpty || s.count > 1) && start < end else {
